@@ -1,0 +1,14 @@
+services:
+  langchain-selfquery:
+    container_name: langchain-selfquery
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    ports:
+      - 3000:3000
+    entrypoint: sh -c "pnpm install && pnpm run build && pnpm run dev"
+    working_dir: /langchain-selfquery
+    volumes:
+      - .:/langchain-selfquery
